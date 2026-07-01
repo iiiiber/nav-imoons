@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>iMoons · 数字基地总览</title>
+<meta name="description" content="iMoons 旗下 18 个站总览导航：博客、量化、AI 产品、工具、文档，按内容分类整理。" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌙%3C/text%3E%3C/svg%3E" />
+<style>
+:root {
+  --bg: #0b0c10;
+  --bg-2: #11131a;
+  --card: #161922;
+  --card-hover: #1d2030;
+  --border: #232634;
+  --text: #e7e9ee;
+  --text-2: #a4a8b3;
+  --text-3: #6c7180;
+  --accent: #c8a96a;        /* 暖金 */
+  --accent-2: #7aa2f7;      /* 蓝 */
+  --self: #c8a96a;          /* 自营 - 金 */
+  --friend: #7aa2f7;        /* 朋友 - 蓝 */
+  --tool: #9ece6a;          /* 工具 - 绿 */
+  --doc: #bb9af7;           /* 文档 - 紫 */
+  --shadow: 0 8px 32px rgba(0,0,0,.45);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --max-w: 1280px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+[data-theme="light"] {
+  --bg: #fafaf7;
+  --bg-2: #f1efe9;
+  --card: #ffffff;
+  --card-hover: #f6f4ed;
+  --border: #e6e2d6;
+  --text: #1a1c1f;
+  --text-2: #4a4f5a;
+  --text-3: #8a8f99;
+  --shadow: 0 6px 24px rgba(0,0,0,.06);
+}
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(800px 400px at 20% -10%, rgba(200,169,106,.08), transparent 60%),
+    radial-gradient(700px 500px at 90% 10%, rgba(122,162,247,.06), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+/* ===== Hero ===== */
+.hero {
+  padding: 80px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+}
+.brand-mark {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #8a6e3a);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  color: #0b0c10;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(200,169,106,.25);
+}
+.brand-name {
+  font-size: 15px; letter-spacing: .12em;
+  color: var(--text-2);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.hero h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  margin: 0 0 18px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(180deg, var(--text) 0%, var(--text-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .lede {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--text-2);
+  max-width: 720px;
+  margin: 0 0 28px;
+}
+.hero .meta {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  font-size: 13px;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+}
+.hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width:6px; height:6px; border-radius:50%; background: var(--accent); display:inline-block; }
+
+/* ===== Search ===== */
+.search-row {
+  margin-top: 32px;
+  display: flex; gap: 12px; align-items: center;
+  flex-wrap: wrap;
+}
+.search {
+  flex: 1; min-width: 240px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px 10px 38px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  position: relative;
+}
+.search-wrap { flex:1; min-width:240px; position:relative; }
+.search-wrap::before {
+  content: "🔍"; position: absolute; left: 12px; top: 50%;
+  transform: translateY(-50%); font-size: 13px; opacity: .55;
+  pointer-events: none;
+}
+.search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,169,106,.12); }
+.theme-btn {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text-2); border-radius: 10px;
+  padding: 9px 14px; font-size: 13px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit;
+}
+.theme-btn:hover { color: var(--text); border-color: var(--accent); }
+.count {
+  font-family: var(--font-mono);
+  font-size: 12px; color: var(--text-3);
+  padding: 9px 12px; background: var(--bg-2);
+  border-radius: 10px; border: 1px solid var(--border);
+}
+
+/* ===== Stats bar ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 32px 0 0;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+}
+.stat .n {
+  font-family: var(--font-mono);
+  font-size: 24px; font-weight: 600;
+  color: var(--text);
+}
+.stat .l {
+  font-size: 12px; color: var(--text-3);
+  margin-top: 2px;
+  text-transform: uppercase; letter-spacing: .08em;
+}
+
+/* ===== Section ===== */
+.section {
+  padding: 56px 0 16px;
+}
+.section-head {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 24px;
+}
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 13px; color: var(--accent);
+  letter-spacing: .08em;
+}
+.section h2 {
+  font-size: 24px; font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.section .hint {
+  font-size: 13px; color: var(--text-3);
+  margin-left: auto;
+}
+
+/* ===== Grid ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.card {
+  position: relative;
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--card-accent, var(--accent));
+  opacity: .85;
+}
+.card:hover {
+  background: var(--card-hover);
+  border-color: color-mix(in oklab, var(--card-accent, var(--accent)) 50%, var(--border));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.card .head {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 10px;
+}
+.card .ico {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  background: color-mix(in oklab, var(--card-accent, var(--accent)) 18%, var(--bg));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  border: 1px solid color-mix(in oklab, var(--card-accent, var(--accent)) 25%, transparent);
+}
+.card .title-row {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.card h3 {
+  font-size: 16px; font-weight: 600;
+  margin: 0;
+  color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap;
+}
+.card .domain {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+.card .desc {
+  font-size: 13.5px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+.card .tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  font-size: 11px;
+}
+.card .tag {
+  font-family: var(--font-mono);
+  background: var(--bg-2);
+  color: var(--text-3);
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  letter-spacing: .02em;
+}
+.card .tag.k-self { color: var(--self); border-color: color-mix(in oklab, var(--self) 30%, var(--border)); }
+.card .tag.k-friend { color: var(--friend); border-color: color-mix(in oklab, var(--friend) 30%, var(--border)); }
+.card .tag.k-tool { color: var(--tool); border-color: color-mix(in oklab, var(--tool) 30%, var(--border)); }
+.card .tag.k-doc { color: var(--doc); border-color: color-mix(in oklab, var(--doc) 30%, var(--border)); }
+
+.card .go {
+  position: absolute;
+  top: 18px; right: 18px;
+  color: var(--text-3);
+  font-size: 16px;
+  transition: transform .15s ease, color .15s ease;
+}
+.card:hover .go { color: var(--card-accent, var(--accent)); transform: translate(2px, -2px); }
+
+/* ===== Empty ===== */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-3);
+  font-size: 14px;
+  display: none;
+}
+.empty.show { display: block; }
+
+/* ===== Footer ===== */
+.footer {
+  margin-top: 80px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-3);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+.footer a { color: var(--text-2); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .hero { padding: 48px 0 32px; }
+  .section { padding: 40px 0 8px; }
+  .search-row { flex-direction: column; align-items: stretch; }
+  .search-wrap { min-width: 0; }
+  .grid { grid-template-columns: 1fr; }
+  .stat .n { font-size: 20px; }
+}
+
+/* hide cards filtered out */
+.card.hidden { display: none; }
+.section.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="brand">
+      <div class="brand-mark">iM</div>
+      <div class="brand-name">iMoons · Digital Homebase</div>
+    </div>
+    <h1>我的 18 个站，都在这了。</h1>
+    <p class="lede">
+      博客、量化、AI 产品、工具、文档——所有 iMoons 旗下站点的总览。
+      按内容相关性分类，每条都写了它到底是干嘛的。
+    </p>
+    <div class="meta">
+      <span><i class="dot"></i>18 站点在线</span>
+      <span><i class="dot"></i>最后核对 2026-07-01</span>
+      <span><i class="dot"></i>部署于 Cloudflare Pages</span>
+    </div>
+
+    <div class="search-row">
+      <div class="search-wrap">
+        <input class="search" id="q" type="text" placeholder="搜站名、域名、标签…  例：quant / 表情包 / 文档" />
+      </div>
+      <button class="theme-btn" id="themeBtn" title="切换主题">☀ 主题</button>
+      <div class="count" id="count">18 / 18</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">5</div><div class="l">写作 & 博客</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">量化 & 金融</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">AI 产品 & SaaS</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">工具 & 导航</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">文档 & 实验室</div></div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: 写作 & 博客 -->
+  <section class="section" data-section="writing">
+    <div class="section-head">
+      <span class="section-num">01 /</span>
+      <h2>写作 & 博客</h2>
+      <span class="hint">学习笔记 / 复盘 / 副业探索 / 朋友合写</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="https://blog.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#c8a96a" data-keywords="blog 博客 不二 学习笔记 复盘 typecho">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">📓</div>
+          <div class="title-row">
+            <h3>不二学习笔记</h3>
+            <div class="domain">blog.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">Typecho 搭的硬核学习博客。对话复盘、战法深挖、自我进化——偏研究、偏数据、偏实战。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Typecho</span>
+          <span class="tag">复盘</span>
+          <span class="tag">深度文</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://read.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#c8a96a" data-keywords="read 读 轻创业 笔记 wordpress">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">📖</div>
+          <div class="title-row">
+            <h3>不二的轻创业笔记</h3>
+            <div class="domain">read.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">WordPress 搭的轻创业 / 副业 / 独立开发专栏。记录小项目从 0 到 1 跑通的全过程。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · WordPress</span>
+          <span class="tag">副业</span>
+          <span class="tag">独立开发</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://buer-astro.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#c8a96a" data-keywords="buer astro 数字基地">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🌗</div>
+          <div class="title-row">
+            <h3>不二 · 数字基地</h3>
+            <div class="domain">buer-astro.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">"不二"这个人格在 Astro 框架下的实验站点。数字基地风格，模块化、可扩展。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Astro</span>
+          <span class="tag">实验</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://buer-site.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#c8a96a" data-keywords="buer site AI 效率手册">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">📚</div>
+          <div class="title-row">
+            <h3>不二 · AI 效率手册</h3>
+            <div class="domain">buer-site.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">把"不二"日常用 AI 提升效率的方法论沉淀成手册——Prompt、工具链、自动化套路。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Pages</span>
+          <span class="tag">AI 效率</span>
+          <span class="tag">手册</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://yanming-ji-blog.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#7aa2f7" data-keywords="yanming 鹏飞 日记 writing slow down">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🪶</div>
+          <div class="title-row">
+            <h3>鹏飞日记</h3>
+            <div class="domain">yanming-ji-blog.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">朋友鹏飞的个人 Issue 式日记站，~/writing/slow-down 风格，慢、深、文字驱。</p>
+        <div class="tags">
+          <span class="tag k-friend">朋友 · Pages</span>
+          <span class="tag">日记</span>
+          <span class="tag">慢写</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://imoonr-blog.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#7aa2f7" data-keywords="imoonr blog">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">📝</div>
+          <div class="title-row">
+            <h3>imoonr Blog</h3>
+            <div class="domain">imoonr-blog.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">imoonr 这个身份的轻量 blog 站，同步发一些技术观察。</p>
+        <div class="tags">
+          <span class="tag k-friend">朋友 · Pages</span>
+          <span class="tag">技术观察</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://pengfei-portfolio.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#7aa2f7" data-keywords="pengfei portfolio 个人主页">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🧑‍💻</div>
+          <div class="title-row">
+            <h3>鹏飞的个人主页</h3>
+            <div class="domain">pengfei-portfolio.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">朋友鹏飞的 portfolio——项目 + 简历 + 联系方式一站式。</p>
+        <div class="tags">
+          <span class="tag k-friend">朋友 · Pages</span>
+          <span class="tag">作品集</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: 量化 & 金融 -->
+  <section class="section" data-section="quant">
+    <div class="section-head">
+      <span class="section-num">02 /</span>
+      <h2>量化 & 金融</h2>
+      <span class="hint">A股信号 / 基金助手 / 个股分析</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="https://quant.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#f7768e" data-keywords="quant 量化 A股 信号 推送">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">📈</div>
+          <div class="title-row">
+            <h3>quant · A股量化信号</h3>
+            <div class="domain">quant.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">自建 A 股日内 / 隔夜多策略信号平台。实时出信号 → 飞书 / 微信推送，跟踪胜率与回测。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · FastAPI</span>
+          <span class="tag">信号</span>
+          <span class="tag">回测</span>
+          <span class="tag">推送</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://funds.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#f7768e" data-keywords="funds 基金 fundquant 量化助手">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">💰</div>
+          <div class="title-row">
+            <h3>FundQuant · 基金量化助手</h3>
+            <div class="domain">funds.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">基金持仓统一管理 + 量化分析。所有平台的基金一站汇总，跑量化指标、自动估值。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Flask</span>
+          <span class="tag">基金</span>
+          <span class="tag">持仓</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://fenxi.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#f7768e" data-keywords="fenxi 分析 dsa-web 个股">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🔍</div>
+          <div class="title-row">
+            <h3>fenxi · dsa-web</h3>
+            <div class="domain">fenxi.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">个股 / 数据结构与算法的实验分析平台。Vite + React 写的前端工具。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Vite</span>
+          <span class="tag">分析</span>
+          <span class="tag">实验</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: AI 产品 & SaaS -->
+  <section class="section" data-section="ai">
+    <div class="section-head">
+      <span class="section-num">03 /</span>
+      <h2>AI 产品 & SaaS</h2>
+      <span class="hint">图像生成 / 起名 / Hermes AI 工作台</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="https://meow.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#9ece6a" data-keywords="meow 喵极 表情包 16张 透明底">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🐱</div>
+          <div class="title-row">
+            <h3>喵极 AI · 表情包生成</h3>
+            <div class="domain">meow.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">一键生成 16 张透明底表情包。多风格（漫画/油画/3D），付费下载，适合内容创作者。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · SaaS</span>
+          <span class="tag">表情包</span>
+          <span class="tag">AI 图像</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://img.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#9ece6a" data-keywords="img 图片 风格转换 漫画 油画">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🎨</div>
+          <div class="title-row">
+            <h3>图片风格转换</h3>
+            <div class="domain">img.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">上传图片 → 一键转漫画 / 油画 / 各种艺术风格。底层是 MiniMax image-01 模型 + 多风格 pipeline。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · SaaS</span>
+          <span class="tag">图像</span>
+          <span class="tag">风格迁移</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://name.imoons.cn/app/" target="_blank" rel="noopener" style="--card-accent:#9ece6a" data-keywords="name 起名 八字 AI 五行">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🧧</div>
+          <div class="title-row">
+            <h3>起名网 · AI 八字起名</h3>
+            <div class="domain">name.imoons.cn/app/</div>
+          </div>
+        </div>
+        <p class="desc">输入姓氏 + 出生时间，自动算八字 + 五行喜用神，AI 生成符合命理的名字。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · SaaS</span>
+          <span class="tag">起名</span>
+          <span class="tag">八字</span>
+        </div>
+      </a>
+
+      <a class="card" href="http://hermes.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#9ece6a" data-keywords="hermes studio 工作台 AI 资源入口">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">⚡</div>
+          <div class="title-row">
+            <h3>Hermes Studio</h3>
+            <div class="domain">hermes.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">Hermes AI Agent 的 Web 工作台。会话、技能、工具、自动化任务一站管理。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Agent</span>
+          <span class="tag">AI Agent</span>
+          <span class="tag">工作台</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: 工具 & 导航 -->
+  <section class="section" data-section="tools">
+    <div class="section-head">
+      <span class="section-num">04 /</span>
+      <h2>工具 & 导航</h2>
+      <span class="hint">全能工具箱 / 工具聚合 / 月光主导航</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="https://tools.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#e0af68" data-keywords="tools 工具箱 全能王">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🧰</div>
+          <div class="title-row">
+            <h3>全能王工具箱</h3>
+            <div class="domain">tools.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">把日常小工具（JSON 格式化、Base64、时间戳、正则…）打包成单页工具箱。</p>
+        <div class="tags">
+          <span class="tag k-tool">工具</span>
+          <span class="tag">单页</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://page.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#e0af68" data-keywords="page 工具导航">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🗂</div>
+          <div class="title-row">
+            <h3>工具导航 · page</h3>
+            <div class="domain">page.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">自营工具集合导航，把上面 10 多个站 + 第三方工具按场景分类。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · 导航</span>
+          <span class="tag">工具</span>
+          <span class="tag">聚合</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://moonlight.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#e0af68" data-keywords="moonlight 月光 副业 导航 hub">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🌙</div>
+          <div class="title-row">
+            <h3>月光 · Moonlight 导航</h3>
+            <div class="domain">moonlight.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">个人副业项目集合主站——首页导航 + docs 章节 + sub-site 卡片总入口。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · 导航</span>
+          <span class="tag">副业</span>
+          <span class="tag">Hub</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: 文档 & 实验室 -->
+  <section class="section" data-section="docs">
+    <div class="section-head">
+      <span class="section-num">05 /</span>
+      <h2>文档 & 实验室</h2>
+      <span class="hint">主站 / 后台 / 知识库 / 工作台 portal</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="http://www.imoons.cn/" target="_blank" rel="noopener" style="--card-accent:#bb9af7" data-keywords="imoons 编程实验室 主站">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🏠</div>
+          <div class="title-row">
+            <h3>iMoons · 编程实验室</h3>
+            <div class="domain">www.imoons.cn</div>
+          </div>
+        </div>
+        <p class="desc">iMoons 旗下主站，定位"编程实验室"——所有项目的品牌门面页。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · 主站</span>
+          <span class="tag">品牌</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://hs.imoons.cn/admin/login" target="_blank" rel="noopener" style="--card-accent:#bb9af7" data-keywords="hs hermes studio admin 后台">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🔐</div>
+          <div class="title-row">
+            <h3>Hermes Studio · 后台</h3>
+            <div class="domain">hs.imoons.cn/admin/login</div>
+          </div>
+        </div>
+        <p class="desc">Hermes AI Agent 的 Web 管理后台登录页。配技能、配插件、配 cron 都在这。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · 后台</span>
+          <span class="tag">Hermes</span>
+          <span class="tag">Admin</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://hermes-portal.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#bb9af7" data-keywords="hermes portal 工作台 资源入口 pages">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">🛠</div>
+          <div class="title-row">
+            <h3>Hermes 工作台 · 资源入口</h3>
+            <div class="domain">hermes-portal.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">Hermes Agent 的"工作台"前端——会话、技能、工具、自动化任务一站管理（与 hermes.imoons.cn 配套）。</p>
+        <div class="tags">
+          <span class="tag k-self">自营 · Pages</span>
+          <span class="tag">Hermes</span>
+          <span class="tag">Portal</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://api-docs-51h.pages.dev/" target="_blank" rel="noopener" style="--card-accent:#bb9af7" data-keywords="api docs 文档 知识库 imoons">
+        <span class="go">↗</span>
+        <div class="head">
+          <div class="ico">📘</div>
+          <div class="title-row">
+            <h3>综合知识库</h3>
+            <div class="domain">api-docs-51h.pages.dev</div>
+          </div>
+        </div>
+        <p class="desc">iMoons 旗下"综合知识库"——API 文档、踩坑、笔记合集，对内对外都可读。</p>
+        <div class="tags">
+          <span class="tag k-doc">知识库</span>
+          <span class="tag">API 文档</span>
+          <span class="tag">Pages</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="empty" id="empty">没有匹配的站点。换个关键词试试？</div>
+
+  <footer class="footer">
+    <div>iMoons · Digital Homebase · 2026</div>
+    <div style="margin-top:6px;">
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="https://blog.imoons.cn/" target="_blank" rel="noopener">主博客</a> ·
+      <a href="javascript:window.scrollTo({top:0,behavior:'smooth'})">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  const q = document.getElementById('q');
+  const count = document.getElementById('count');
+  const empty = document.getElementById('empty');
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const sections = Array.from(document.querySelectorAll('.section'));
+  const themeBtn = document.getElementById('themeBtn');
+  const total = cards.length;
+
+  // theme
+  const stored = localStorage.getItem('nav-theme');
+  if (stored === 'light') document.documentElement.setAttribute('data-theme','light');
+  themeBtn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    if (cur === 'light') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('nav-theme','dark');
+    } else {
+      document.documentElement.setAttribute('data-theme','light');
+      localStorage.setItem('nav-theme','light');
+    }
+  });
+
+  // search
+  function filter(){
+    const v = q.value.trim().toLowerCase();
+    let shown = 0;
+    cards.forEach(c => {
+      const kw = (c.getAttribute('data-keywords') || '') + ' ' + c.innerText;
+      const hit = !v || kw.toLowerCase().includes(v);
+      c.classList.toggle('hidden', !hit);
+      if (hit) shown++;
+    });
+    sections.forEach(s => {
+      const any = s.querySelectorAll('.card:not(.hidden)').length > 0;
+      s.classList.toggle('hidden', !any);
+    });
+    count.textContent = shown + ' / ' + total;
+    empty.classList.toggle('show', shown === 0);
+  }
+  q.addEventListener('input', filter);
+
+  // keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== q) {
+      e.preventDefault();
+      q.focus();
+    } else if (e.key === 'Escape' && document.activeElement === q) {
+      q.value = ''; filter(); q.blur();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
