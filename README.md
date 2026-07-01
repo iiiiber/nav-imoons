@@ -1,4 +1,4 @@
-# iMoons 数字基地导航
+# Leeeo 数字基地导航
 
 18 个自营/朋友站点的总览导航页。
 
@@ -23,7 +23,7 @@
 | 工具 & 导航 | 全能王工具箱 | tools.imoons.cn |
 | 工具 & 导航 | 工具导航 · page | page.imoons.cn |
 | 工具 & 导航 | 月光 · Moonlight 导航 | moonlight.imoons.cn |
-| 文档 & 实验室 | iMoons · 编程实验室 | www.imoons.cn |
+| 文档 & 实验室 | Leeeo · 编程实验室 | www.leeeo.cn |
 | 文档 & 实验室 | Hermes Studio · 后台 | hs.imoons.cn/admin/login |
 | 文档 & 实验室 | Hermes 工作台 · 资源入口 | hermes-portal.pages.dev |
 | 文档 & 实验室 | 综合知识库 | api-docs-51h.pages.dev |
